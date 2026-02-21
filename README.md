@@ -35,8 +35,8 @@ app/
 **1. Clone and install**
 
 ```bash
-git clone https://github.com/var-raphael/ring-viewer
-cd ring-viewer
+git clone https://github.com/var-raphael/atelier
+cd atelier
 npm install
 ```
 
