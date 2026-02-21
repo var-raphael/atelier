@@ -1,37 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💍 3D Ring Viewer
+
+A real-time interactive 3D ring configurator for jewelry e-commerce. Built with Next.js, Three.js and TypeScript — customers can rotate, zoom and customise ring band and diamond colours before buying.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript |
+| 3D Rendering | Three.js + WebGL |
+| Styling | Plain CSS (inline `<style>`) |
+| Fonts | Cormorant Garamond, DM Mono |
+
+---
+
+## Project Structure
+
+```
+app/
+├── page.tsx                  # Main viewer page
+├── components/
+│   ├── RingModel.tsx         # Three.js canvas + 3D ring mesh
+│   └── ColorSelector.tsx     # Colour picker UI component
+└── lib/
+    └── colors.ts             # Band & diamond colour definitions
+```
+
+---
 
 ## Getting Started
 
-First, run the development server:
+**1. Clone and install**
+
+```bash
+git clone https://github.com/var-raphael/ring-viewer
+cd ring-viewer
+npm install
+```
+
+**2. Run the dev server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**3. Build for production**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **360° rotation** — drag to spin the ring on any axis
+- **Scroll to zoom** — pinch or scroll wheel to inspect details
+- **Live colour swapping** — band and diamond colours update in real-time without remounting the canvas
+- **Multiple finishes** — Gold, Silver, Rose Gold, Platinum and more
+- **Diamond colours** — Clear, Pink, Blue, Yellow, Black
+- **Luxury UI** — dark editorial aesthetic with film grain, ambient lighting and gold shimmer typography
+- **Fully responsive** — works on mobile and desktop
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Customising Colours
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Edit `app/lib/colors.ts` to add or change available colours:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# atelier
+```ts
+export const bandColors = [
+  { name: 'Gold',      hex: 0xFFD700 },
+  { name: 'Silver',    hex: 0xC0C0C0 },
+  { name: 'Rose Gold', hex: 0xB76E79 },
+  // add more here
+];
+
+export const diamondColors = [
+  { name: 'Clear',  hex: 0xFFFFFF },
+  { name: 'Pink',   hex: 0xFFB6C1 },
+  // add more here
+];
+```
+
+---
+
+## Embedding in a Store
+
+The `RingModel` component accepts two props:
+
+```tsx
+<RingModel
+  bandColor={0xFFD700}    // hex number
+  diamondColor={0xFFFFFF} // hex number
+/>
+```
+
+Drop it into any product page and pass the colours from your product data.
+
+---
+
+## License
+
+MIT — free to use in commercial projects.
+
+---
+
+Built by [Raphael Samuel](https://github.com/var-raphael)
